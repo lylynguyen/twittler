@@ -1,27 +1,133 @@
 <!DOCTYPE html>
 <html>
   <head>
-    <script src="jquery.js"></script>
+    <script src="js/jquery.js"></script>
     <script src="data_generator.js"></script>
+    <script src="js/moment.js"></script>
+    <link href="css/style.css" rel="stylesheet">
+    <link href="css/font-awesome.min.css" rel="stylesheet">
   </head>
   <body>
-    <script>
+  <header>
+    <h1>Twittler  <i class="fa fa-twitter fa-1x"></i></h1>
+  </header>
 
-      $(document).ready(function(){
-        var $body = $('body');
-        $body.html('');
+  <section>
+    <h2>
+      <button class="new-tweets">Tweets</button>
+      <button class="mracus">@mracus</button>
+      <button class="doug">@douglascalhoun</button>
+      <button class="sharks">@sharksforcheap</button>
+      <button class="shawn">@shawndrost</button>
+    </h2>
+    
+  </section>
 
-        var index = streams.home.length - 1;
-        while(index >= 0){
-          var tweet = streams.home[index];
-          var $tweet = $('<div></div>');
-          $tweet.text('@' + tweet.user + ': ' + tweet.message);
-          $tweet.appendTo($body);
-          index -= 1;
-        }
+    <div class="container"></div>  
+    
+      <script>
+        $(document).ready(function(){
+          
+          $('.new-tweets').on('click', update_tweets);
 
-      });
+          $('.mracus').on('click', mracus_tweets);
 
-    </script>
+          $('.doug').on('click', doug_tweets);
+
+          $('.shawn').on('click', shawn_tweets);
+
+          $('.sharks').on('click', sharks_tweet);
+
+        });
+
+        function update_tweets() 
+        {
+          var $container = $('.container');
+          $container.html('');
+
+          var index = streams.home.length - 1;
+          while(index >=0)
+            {
+              var tweet = streams.home[index];
+              var $tweet = $('<div></div>');
+              var tweetTime = moment(tweet.created_at).fromNow();
+              $tweet.html('<strong class=' + tweet.user + '>@' + tweet.user + '</strong>: ' + tweet.message + '<br />' + tweetTime);
+              $tweet.appendTo($container);
+              index -= 1;
+            }
+          }  
+
+        function mracus_tweets() 
+          {
+            var $container = $('.container');
+            $container.html('');
+
+            var index = streams.users.mracus.length - 1;
+            while(index>=0)
+            {
+              var tweet = streams.users.mracus[index];
+              var $tweet = $('<div></div>');
+              var tweetTime = moment(tweet.created_at).fromNow();
+              $tweet.html('<strong class=' + tweet.user + '>@' + tweet.user + '</strong>: ' + tweet.message + '<br />' + tweetTime);
+              $tweet.appendTo($container);
+              index -= 1;
+            }
+          }
+
+          function doug_tweets() 
+          {
+            var $container = $('.container');
+            $container.html('');
+
+            var index = streams.users.douglascalhoun.length - 1;
+            while(index>=0)
+            {
+              var tweet = streams.users.douglascalhoun[index];
+              var $tweet = $('<div></div>');
+              var tweetTime = moment(tweet.created_at).fromNow();
+              $tweet.html('<strong class=' + tweet.user + '>@' + tweet.user + '</strong>: ' + tweet.message + '<br />' + tweetTime);
+              $tweet.appendTo($container);
+              index -= 1;
+            } 
+
+          }
+
+          function shawn_tweets()
+          {
+            var $container = $('.container');
+            $container.html('');
+
+            var index = streams.users.shawndrost.length - 1;
+            while(index>=0)
+            {
+              var tweet = streams.users.shawndrost[index];
+              var $tweet = $('<div></div>');
+              var tweetTime = moment(tweet.created_at).fromNow();
+              $tweet.html('<strong class=' + tweet.user + '>@' + tweet.user + '</strong>: ' + tweet.message + '<br />' + tweetTime);
+              $tweet.appendTo($container);
+              index -= 1;
+            }
+          }
+
+          function sharks_tweet()
+          {
+            var $container = $('.container');
+            $container.html('');
+
+            var index = streams.users.sharksforcheap.length - 1;
+            while(index>=0)
+            {
+              var tweet = streams.users.sharksforcheap[index];
+              var $tweet = $('<div></div>');
+              var tweetTime = moment(tweet.created_at).fromNow();
+              $tweet.html('<strong class=' + tweet.user + '>@' + tweet.user + '</strong>: ' + tweet.message + '<br />' + tweetTime);
+              $tweet.appendTo($container);
+              index -= 1;
+
+            }
+          }
+      
+      </script>
+    
   </body>
 </html>
